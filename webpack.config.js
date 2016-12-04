@@ -2,7 +2,7 @@ module.exports = {
   entry: ['./webpack.init.js','./app/index.js'],
   output: {
     filename: 'bundle.js',
-    publicPath:  '/',
+    path: './',
   },
   module: {
     loaders: [{

@@ -6,28 +6,31 @@ import useScroll from 'react-router-scroll';
 import {createHistory} from 'history';
 
 import Todos from './todos';
+import Layout from './clientlayout';
+import Hello from './hello';
 import createStore from './clientstore';
 
 export default (props, location) => {
 
-    let prefix = 'en/app';
+    let prefix = '';
     const store = createStore(props);
 
     var childRoutes =  [
         {
             path: '/',
-            component: Todos,
+            component: Layout,
             indexRoute: {
                 component: Todos
             },
             childRoutes: [
                 {
                     path: '/hello',
-                    getComponent(location, cb) {
+                    component: Hello,
+                    /*getComponent(location, cb) {
                         require.ensure([], (require) => {
                             cb(null, require('./hello'))
                         }, 'hello')
-                    }
+                    }*/
                 },
             ]
         }
