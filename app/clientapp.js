@@ -7,7 +7,6 @@ import {createHistory} from 'history';
 
 import Todos from './todos';
 import Layout from './clientlayout';
-import Hello from './hello';
 import createStore from './clientstore';
 
 export default (props, location) => {
@@ -25,12 +24,11 @@ export default (props, location) => {
             childRoutes: [
                 {
                     path: '/hello',
-                    component: Hello,
-                    /*getComponent(location, cb) {
+                    getComponent(location, cb) {
                         require.ensure([], (require) => {
-                            cb(null, require('./hello'))
-                        }, 'hello')
-                    }*/
+                            cb(null, require('./hello').default)
+                        }, 'Hello')
+                    }
                 },
             ]
         }
