@@ -1,9 +1,9 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-import Todos from './todos';
+import ClientApp from './clientapp';
 
 render(
-  <Todos />,
+  <ClientApp />,
   document.getElementById('app')
 );

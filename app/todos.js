@@ -2,6 +2,7 @@ import React from 'react';
 import Todo from './todo';
 import AddTodo from './add-todo';
 import shortid from 'shortid';
+import {Link} from 'react-router';
 
 import {
   toggleDone,
@@ -49,6 +50,7 @@ export default class Todos extends React.Component {
   render() {
     return (
       <div>
+        <Link to="/hello"> Say Hello to Everyone! </Link>
         <p>The <em>best</em> todo app out there.</p>
         <h1>Things to get done:</h1>
         <ul className="todos-list">{ this.renderTodos() }</ul>
