@@ -21,14 +21,15 @@ export default class AddTodo extends React.Component {
       this.props.onNewTodo({
         name: newTodoName
       });
-
       this.setState({ formInput: '' });
+      this.refs.contentInput.value = '';
     }
+
   }
   render() {
     return (
       <div className="add-todo">
-        <input type="text" placeholder="Walk the dog" onChange={(e) => this.inputChange(e)} />
+        <input type="text" placeholder="Walk the dog" onChange={(e) => this.inputChange(e)} ref='contentInput' />
         <button onClick={(e) => this.addTodo(e) }>
           Add Todo
         </button>

@@ -10,16 +10,18 @@ import shortid from 'shortid';
 export default props => {
 
     const reducer = combineReducers({
-        todos: clientReducer,
+        client: clientReducer,
         routing: routerReducer
     });
 
     const initialState = {
-        todos: [
-            { id: shortid.generate(), name: 'Write a blog post for Sitepoint', done: false },
-            { id: shortid.generate(), name: 'Blog about Jest', done: false },
-            { id: shortid.generate(), name: 'Walk the dog', done: false },
-        ]
+        client: {
+            todos: [
+                { id: shortid.generate(), name: 'Write a blog post for Sitepoint', done: false },
+                { id: shortid.generate(), name: 'Blog about Jest', done: false },
+                { id: shortid.generate(), name: 'Walk the dog', done: false },
+            ]
+        }
     };
 
     const logger = createLogger();

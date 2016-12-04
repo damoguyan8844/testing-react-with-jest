@@ -1,41 +1,32 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Todo from './todo';
 import AddTodo from './add-todo';
 import shortid from 'shortid';
-import {Link} from 'react-router';
+import { Link } from 'react-router';
+import ClientAction from './clientaction';
 
-import {
-  toggleDone,
-  addTodo,
-  deleteTodo
-} from './state-functions';
-
-export default class Todos extends React.Component {
+class Todos extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      todos: [
-        { id: shortid.generate(), name: 'Write a blog post for Sitepoint', done: false },
-        { id: shortid.generate(), name: 'Blog about Jest', done: false },
-        { id: shortid.generate(), name: 'Walk the dog', done: false },
-      ]
-    }
   }
 
   toggleDone(id) {
-    this.setState(toggleDone(this.state, id));
+    this.props.actions.toggleDone(id);
   }
 
   addTodo(todo) {
-    this.setState(addTodo(this.state, todo));
+    this.props.actions.addTodo(todo);
   }
 
   deleteTodo(id) {
-    this.setState(deleteTodo(this.state, id));
+    this.props.actions.deleteTodo(id);
   }
 
   renderTodos() {
-    return this.state.todos.map((todo) => {
+    return this.props.todos.map((todo) => {
       return (
         <li key={todo.id}>
           <Todo
@@ -59,3 +50,17 @@ export default class Todos extends React.Component {
     )
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    todos: state.client.todos
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(Object.assign({}, ClientAction), dispatch)
+  };
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Todos);
